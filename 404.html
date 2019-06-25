@@ -1,0 +1,50 @@
+---
+permalink: /404.html
+---
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" http-equiv="403"></meta>
+  <link rel="stylesheet" type="text/css" href="/css/index.css"></link>
+  <title>Error 403</title>
+  <script src="https://scriptlib.pwcq.ml/scriptlib.js"></script>
+</head>
+<body style="min-width:1280px;font-size:32px;">
+  <img align="left" src="https://avatars3.githubusercontent.com/u/43069941?s=32&v=4"  alt="Webcirque" />
+  <div id="navbar-text">PWCQ</div>
+  <center><span id="output-h" style="color:red;font-weight:700;font-size:64px;"></span></center><br />
+  <center><span id="output-d"></span></center>
+  <center><br /><a href="/" id="cbh"><b></b></a></center><br />
+  <script>
+try {
+textlang = {};
+textlang.loc = window.location.pathname;
+if (window.navigator.language == "zh-CN" || window.navigator.language == "zh-Hans") {
+  textlang.ermsg = "错误 $1";
+  textlang.erdesc = "服务器出于安全原因拒绝了对页面[$2]的请求。";
+  textlang.backHome = "返回主页";
+  textlang.mobile = "您使用的是移动版视图";
+  textlang.desktop = "您使用的是桌面版视图";
+}
+else if (window.navigator.language == "zh-TW" || window.navigator.language == "zh-Hant") {
+  textlang.ermsg = "錯誤 $1";
+  textlang.erdesc = "伺服器出於安全緣由而拒絕訪問[$2]。";
+  textlang.backHome = "返回主頁";
+  textlang.mobile = "您使用的是行動電話版視圖";
+  textlang.desktop = "您使用的是計算機版視圖";
+}
+else if (window.navigator.language == "ja") {
+  textlang.ermsg = "エラー $1";
+  textlang.erdesc = "安全上の理由のために、サーバーが[$2]のリクエストを拒否されました。";
+  textlang.backHome = "戻る";
+  textlang.mobile = "ページは携帯版を読みます";
+  textlang.desktop = "ページはPC版を読みます";
+}
+else {
+  textlang.ermsg = "ERROR: ACCESS DENIED";
+  textlang.erdesc = "Server refused requesting [<b>$2</b>].";
+  textlang.backHome = "Back to Home";
+  textlang.mobile = "You are using mobile vision.";
+  textlang.desktop = "You are using desktop vision.";
+}
+//if (window.navigator.userAgent.search("Mobile") == -1) {
+//  window.location.href = "/error/?code=403&page=" + textlang.loc ;
