@@ -1,3 +1,33 @@
+body {
+	background: #000;
+	position: fixed;
+	color: #fff;
+}
+a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
 .hidden {
 	display: none;
+}
+.screen, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+.navigation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+#screen-first {
+	background: linear-gradient(to right, #009fff, #0000ff);
+	position: absolute;
+	top: 0;
+	left: 0;
 }

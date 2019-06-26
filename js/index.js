@@ -10,10 +10,12 @@ document.addEventListener("readystatechange", function () {
 			let translatedText = "";
 			let mode = "";
 			if (!(self.languageObject)) {
-				self.languageObject = {};
+				self.languageObject = {
+					default: {}
+				};
 			};
 			let languageOverride = "";
-			let currentLanguage = navigator.language;
+			self.currentLanguage = navigator.language;
 			let primaryControlled = null;
 			originalText.forEach((e, i) => {
 				let args = e.trim();
@@ -40,24 +42,19 @@ document.addEventListener("readystatechange", function () {
 						};
 						case "navigation": {
 							let linkName = args.slice(0, args.indexOf(" --> "));
+							if (linkName[0] == "$") {
+								linkName = getLang(linkName.slice(1));
+							};
 							let linkTo = args.slice(args.indexOf(" --> ") + 5);
-							primaryControlled.innerHTML += "<li><a href=\"" + linkTo + "\">" + linkName + "</li>\n";
+							primaryControlled.innerHTML += "<li><a href=\"" + linkTo + "\">" + linkName + "</a></li>\n";
 							break;
 						};
 						case "show": {
-							if (languageObject[currentLanguage]) {
-								if (languageObject[currentLanguage][args]) {
-									d.innerHTML = languageObject[currentLanguage][args];
-								} else {
-									d.innerHTML = "Text [$1] is not defined.".replace("$1", args);
-								};
+							if (args[0] != "~") {
+								d.innerHTML += getLang(args);
 							} else {
-								if (languageObject["default"][args]) {
-									d.innerHTML = languageObject["default"][args];
-								} else {
-									d.innerHTML = "Text [$1] is not defined.".replace("$1", args);
-								};
-							}
+								d.innerHTML += args.slice(1);
+							};
 							break;
 						};
 						default: {
@@ -72,6 +69,8 @@ document.addEventListener("readystatechange", function () {
 						if (mode == "navigation") {
 							d.innerHTML = "";
 							primaryControlled = d.appendChild(document.createElement("ul"));
+						} else if (mode == "show") {
+							d.innerHTML = "";
 						};
 					} else {
 						console.error("Interpreter error: No mode announced on bParse requested element which has an index of %i\n%o", f, d);
@@ -81,3 +80,26 @@ document.addEventListener("readystatechange", function () {
 		});
 	};
 });
+
+function getLang(id) {
+	let str = "Text [$1] is not defined.".replace("$1", id);;
+	if (languageObject[currentLanguage]) {
+		if (languageObject[currentLanguage][id] || languageObject[currentLanguage][id] == "") {
+			str = languageObject[currentLanguage][id];
+		} else {
+			console.warn("Text [$1] is not defined in language $2. Using fallback...".replace("$1", id).replace("$2", currentLanguage));
+			if (languageObject["default"][id]) {
+				str = languageObject["default"][id];
+			} else {
+				console.error("Text [$1] is not defined.".replace("$1", id));
+			};
+		};
+	} else {
+		if (languageObject["default"][id]) {
+			str = languageObject["default"][id];
+		} else {
+			console.error("Text [$1] is not defined.".replace("$1", id));
+		};
+	};
+	return str;
+}
