@@ -45,7 +45,7 @@ a {
 	margin: 0;
 	text-align: center;
 }
-.button-bar div {
+.button-bar * {
 	cursor: default;
 	display: inline-block;
 	border: 1px solid #fff;
@@ -55,9 +55,10 @@ a {
 	background: transparent;
 	box-shadow: 0 0 0 0 rgb(0, 0, 0);
 	transform: translate(0, 0);
+	font-weight: 400;
 	transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
 }
-.button-bar div:hover {
+.button-bar *:hover {
 	background: rgba(0, 0, 0, 0.4);
 	box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.4);
 	transform: translate(0, -2px);

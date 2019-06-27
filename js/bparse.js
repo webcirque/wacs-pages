@@ -18,7 +18,7 @@ document.addEventListener("readystatechange", function () {
 			self.currentLanguage = navigator.language;
 			let primaryControlled = null;
 			originalText.forEach((e, i) => {
-				let args = e.trim();
+				let args = e.trimLeft();
 				if (i > 0) {
 					switch (mode) {
 						case "language": {
