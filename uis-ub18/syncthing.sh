@@ -46,6 +46,8 @@ echo "syncthing -gui-address=0.0.0.0:\$GUIPORT -home=\$HOME">>/usr/usi/syncthing
 echo "Finished. Before continueing, you need to know..."
 echo "Syncthing does not have a service installed by default, but we provided a way to run Syncthing without trouble."
 echo "Just run Syncthing by running /usr/usi/syncthing.sh"
+echo "Press ENTER to continue."
+read tmpfkvar
 echo "Starting Syncthing..."
 bash /usr/usi/syncthing.sh & disown
 echo "Done. Syncthing is now up on https://0.0.0.0:$tmpport/"
