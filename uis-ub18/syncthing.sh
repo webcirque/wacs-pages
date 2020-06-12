@@ -39,8 +39,8 @@ echo "GUIPORT=$tmpport">>/usr/usi/syncthing.sh
 if [ "$tmpcert" == "1" ] ; then
   echo "if [ -d \"\$HOMEDIR/https-cert.pem\" ] ; then rm -f \"\$HOMEDIR/https-cert.pem\" ; fi">>/usr/usi/syncthing.sh
   echo "if [ -d \"\$HOMEDIR/https-key.pem\" ] ; then rm -f \"\$HOMEDIR/https-key.pem\" ; fi">>/usr/usi/syncthing.sh
-  echo "cp \"$tmpcertpath$tmpcertpub\" \"\$HOMEDIR/https-cert.pem\">>/usr/usi/syncthing.sh
-  echo "cp \"$tmpcertpath$tmpcertpri\" \"\$HOMEDIR/https-key.pem\">>/usr/usi/syncthing.sh
+  echo "cp \"$tmpcertpath$tmpcertpub\" \"\$HOMEDIR/https-cert.pem\"">>/usr/usi/syncthing.sh
+  echo "cp \"$tmpcertpath$tmpcertpri\" \"\$HOMEDIR/https-key.pem\"">>/usr/usi/syncthing.sh
 fi
 echo "syncthing -gui-address=0.0.0.0:\$GUIPORT -home=\$HOME">>/usr/usi/syncthing.sh
 echo "Finished. Before continueing, you need to know..."
