@@ -42,13 +42,13 @@ if [ "$tmpcert" == "1" ] ; then
   echo "cp \"$tmpcertpath$tmpcertpub\" \"\$HOMEDIR/https-cert.pem\"">>/usr/usi/syncthing.sh
   echo "cp \"$tmpcertpath$tmpcertpri\" \"\$HOMEDIR/https-key.pem\"">>/usr/usi/syncthing.sh
 fi
-echo "syncthing -gui-address=0.0.0.0:\$GUIPORT -home=\$HOME">>/usr/usi/syncthing.sh
+echo "syncthing -gui-address=0.0.0.0:\$GUIPORT -home=\$HOME>>\$HOME/log.txt & disown">>/usr/usi/syncthing.sh
 echo "Finished. Before continueing, you need to know..."
 echo "Syncthing does not have a service installed by default, but we provided a way to run Syncthing without trouble."
 echo "Just run Syncthing by running /usr/usi/syncthing.sh"
 echo "Press ENTER to continue."
 read tmpfkvar
 echo "Starting Syncthing..."
-bash /usr/usi/syncthing.sh & disown
+bash /usr/usi/syncthing.sh
 echo "Done. Syncthing is now up on https://0.0.0.0:$tmpport/"
 exit
