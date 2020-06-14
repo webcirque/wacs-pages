@@ -1,4 +1,5 @@
 #!/bin/bash
+#Installation script written by EdChdX
 echo "Starting installing Syncthing..."
 curl -s https://syncthing.net/release-key.txt | apt-key add -
 echo "deb https://apt.syncthing.net/ syncthing stable" | tee /etc/apt/sources.list.d/syncthing.list
