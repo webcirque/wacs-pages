@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 srcRepoUrl="https://ds.pwcq.dev/uis-ub18"
-echo "DNSCrypt-Proxy installation script by EdChdX"
+echo "DNSCrypt-Proxy installation script by EdChdX in WTFPL"
 echo "You are about to install DNSCrypt-Proxy on your machine."
 echo "Press Enter to confirm you have ROOT permissions and want to continue."
 read tmp1
