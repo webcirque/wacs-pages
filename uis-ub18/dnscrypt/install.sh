@@ -10,7 +10,6 @@ getos=linux
 read -p "Arch (e.g. x86_64, i386): " getarch
 read -p "Version (e.g. 2.0.44): " getver
 downloadPath=https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/$getver/dnscrypt-proxy-$getos\_$getarch-$getver.tar.gz
-mkdir /usr/usi > /dev/null
 mkdir /opt > /dev/null
 cd /opt
 echo Downloading archive from [$downloadPath] ...
@@ -18,23 +17,24 @@ curl -Lo dnscrypt.tgz $downloadPath
 tar -zxvf dnscrypt.tgz
 rm dnscrypt.tgz
 cd linux-$getarch
-pwd > /usr/uis/dnscrypt-proxy/path
-curl -Lo dnscrypt-proxy.toml "$srcRepoUrl/dnscrypt/default.toml"
-curl -Lo uninstall.sh "$srcRepoUrl/dnscrypt/uninstall.sh"
-chmod +x uninstall.sh
-read -p 'Do you have IPv6 connection? ("y" for enable IPv6): ' getipv6
-if [ "$getipv6" == "y" ] ; then
-	sed -i 's/ipv6_servers = false/ipv6_servers = true/g' dnscrypt-proxy.toml
-fi
-read -p 'Do you want to use Google DoH? ("y" for enable): ' getgoogle
-# dohReplaced="_SED_REPLACE_SERVERS_"
-# dohNoGoogle="'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'cloudflare', 'nextdns'"
-# dohHasGoogle="'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'google', 'cloudflare', 'nextdns'"
-if [ "$getgoogle" == "y" ] ; then
-	sed -i "s/_SED_REPLACE_SERVERS_/'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'google', 'cloudflare', 'nextdns'/g" dnscrypt-proxy.toml
-fi
-if [ "$getgoogle" != "y" ] ; then
-	sed -i "s/_SED_REPLACE_SERVERS_/'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'cloudflare', 'nextdns'/g" dnscrypt-proxy.toml
+if [ ! -e "dnscrypt-proxy.toml" ] ; then
+	curl -Lo dnscrypt-proxy.toml "$srcRepoUrl/dnscrypt/default.toml"
+	curl -Lo uninstall.sh "$srcRepoUrl/dnscrypt/uninstall.sh"
+	chmod +x uninstall.sh
+	read -p 'Do you have IPv6 connection? ("y" for enable IPv6): ' getipv6
+	if [ "$getipv6" == "y" ] ; then
+		sed -i 's/ipv6_servers = false/ipv6_servers = true/g' dnscrypt-proxy.toml
+	fi
+	read -p 'Do you want to use Google DoH? ("y" for enable): ' getgoogle
+	# dohReplaced="_SED_REPLACE_SERVERS_"
+	# dohNoGoogle="'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'cloudflare', 'nextdns'"
+	# dohHasGoogle="'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'google', 'cloudflare', 'nextdns'"
+	if [ "$getgoogle" == "y" ] ; then
+		sed -i "s/_SED_REPLACE_SERVERS_/'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'google', 'cloudflare', 'nextdns'/g" dnscrypt-proxy.toml
+	fi
+	if [ "$getgoogle" != "y" ] ; then
+		sed -i "s/_SED_REPLACE_SERVERS_/'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'cloudflare', 'nextdns'/g" dnscrypt-proxy.toml
+	fi
 fi
 echo 'Disabling "systemd-resolved"...'
 systemctl stop systemd-resolved
