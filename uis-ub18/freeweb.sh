@@ -1,5 +1,7 @@
 #/usr/bin/sh
 cd /etc/
+echo Installing prequisites...
+apt install -y apt-transport-https software-properties-common
 echo Installing Tor and Nyx...
 apt install -y tor nyx
 if [ ! -e "tor/defaultTorrc" ] ; then
