@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+srcRepoUrl="https://ds.pwcq.dev/uis-ub18"
 echo "DNSCrypt-Proxy installation script by EdChdX"
 echo "You are about to install DNSCrypt-Proxy on your machine."
 echo "Press Enter to confirm you have ROOT permissions and want to continue."
@@ -9,14 +10,18 @@ getos=linux
 read -p "Arch (e.g. x86_64, i386): " getarch
 read -p "Version (e.g. 2.0.44): " getver
 downloadPath=https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/$getver/dnscrypt-proxy-$getos\_$getarch-$getver.tar.gz
-mkdir /opt
+mkdir /usr/usi > /dev/null
+mkdir /opt > /dev/null
 cd /opt
 echo Downloading archive from [$downloadPath] ...
 curl -Lo dnscrypt.tgz $downloadPath
 tar -zxvf dnscrypt.tgz
 rm dnscrypt.tgz
 cd linux-$getarch
-curl -Lo dnscrypt-proxy.toml "https://ds.pwcq.dev/uis-ub18/dnscrypt/default.toml"
+pwd > /usr/uis/dnscrypt-proxy/path
+curl -Lo dnscrypt-proxy.toml "$srcRepoUrl/dnscrypt/default.toml"
+curl -Lo uninstall.sh "$srcRepoUrl/dnscrypt/uninstall.sh"
+chmod +x uninstall.sh
 read -p 'Do you have IPv6 connection? ("y" for enable IPv6): ' getipv6
 if [ "$getipv6" == "y" ] ; then
 	sed -i 's/ipv6_servers = false/ipv6_server = true/g' dnscrypt-proxy.toml
