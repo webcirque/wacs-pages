@@ -24,7 +24,7 @@ curl -Lo uninstall.sh "$srcRepoUrl/dnscrypt/uninstall.sh"
 chmod +x uninstall.sh
 read -p 'Do you have IPv6 connection? ("y" for enable IPv6): ' getipv6
 if [ "$getipv6" == "y" ] ; then
-	sed -i 's/ipv6_servers = false/ipv6_server = true/g' dnscrypt-proxy.toml
+	sed -i 's/ipv6_servers = false/ipv6_servers = true/g' dnscrypt-proxy.toml
 fi
 read -p 'Do you want to use Google DoH? ("y" for enable): ' getgoogle
 # dohReplaced="_SED_REPLACE_SERVERS_"
