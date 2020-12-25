@@ -19,7 +19,7 @@ echo Installing i2pd...
 add-apt-repository ppa:purplei2p/i2pd
 apt update
 apt install -y i2pd
-if [ ! "$getipv6" == "y" ] ; then
+if [ "$getipv6" == "y" ] ; then
 	sed -i "s/ipv6 = false/ipv6 = true/g" i2pd/i2pd.conf
 fi
 echo Done.
