@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 echo You are about to install Caddy HTTP Server on your machine.
 echo Please make sure that you already have ROOT permissions.
 read tmp1
