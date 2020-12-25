@@ -7,10 +7,9 @@ apt install -y tor nyx
 read -p 'Do you have IPv6? (y for confirmation): ' getipv6
 if [ ! -e "tor/defaultTorrc" ] ; then
 	echo 'Configuring Tor for the first time...'
-	mv tor/torrc tor/defaultTorr
+	mv tor/torrc tor/defaultTorrc
 	echo "ExcludeNodes {kp},{ir},{cu},{cn},{hk},{mo},{ru},{sy},{pk}" > tor/torrc
 	echo "StrictNodes 1" >> tor/torrc
-	
 	if [ "$getipv6" == "y" ] ; then
 		echo "ClientUseIPv6 1" >> tor/torrc
 		echo "IPv6Exit 1" >> tor/torrc
