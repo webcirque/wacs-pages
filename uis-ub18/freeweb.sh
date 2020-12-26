@@ -72,8 +72,8 @@ if [ ! -e "tor/defaultTorrc" ] ; then
 				torType=SOCKS5Proxy
 				torPort=SOCKS5Port
 			fi
-			echo '$torType $getProxyIP' >> tor/torrc
-			echo '$torPort $getProxyPort' >> tor/torrc
+			echo "$torType $getProxyIP" >> tor/torrc
+			echo "$torPort $getProxyPort" >> tor/torrc
 		fi
 	fi
 fi
