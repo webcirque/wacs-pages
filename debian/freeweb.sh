@@ -5,7 +5,7 @@ echo Installing prequisites...
 apt install -y apt-transport-https software-properties-common
 echo Adding repositories...
 printf "Detecting previous source file...	"
-if [ ! -e "apt/sources.list.d/freeweb.list" ] ; then
+if [ -e "apt/sources.list.d/freeweb.list" ] ; then
 	echo "detected."
 	read -p 'Update your existing repo links? (y to confirm): ' updDebRepo
 else
