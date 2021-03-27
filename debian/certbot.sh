@@ -39,7 +39,7 @@ echo ""
 read -p "Select plugins: " uChoice
 echo ""
 testChoice () {
-	if [ "$uChoice" == *"$1"* ] ; then
+	if [[ "$uChoice" == *"$1"* ]] ; then
 		echo "You selected \"$2\". Installing..."
 		snap install certbot-dns-$2
 	fi
