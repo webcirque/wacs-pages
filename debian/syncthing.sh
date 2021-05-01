@@ -27,7 +27,7 @@ echo "[Service]" >> $targetSvc
 echo "Type=simple" >> $targetSvc
 echo "User=syncthing" >> $targetSvc
 echo "Group=syncthing" >> $targetSvc
-echo "ExecStart=/usr/local/bin/syncthing" >> $targetSvc
+echo "ExecStart=$(which syncthing)" >> $targetSvc
 echo "TimeoutStopSec=5s" >> $targetSvc
 echo "Restart=on-failure" >> $targetSvc
 echo "RestartSec=10" >> $targetSvc
