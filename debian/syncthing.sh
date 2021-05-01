@@ -36,7 +36,7 @@ echo " " >> $targetSvc
 echo "[Install]" >> $targetSvc
 echo "WantedBy=multi-user.target" >> $targetSvc
 echo Registering a new service...
-systemctl daemon-reloas0d
+systemctl daemon-reload
 systemctl enable syncthing
 systemctl start syncthing
 echo "Installation finished. Have fun!"
