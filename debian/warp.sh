@@ -1,4 +1,4 @@
-!#/usr/bin/bash
+#!/usr/bin/bash
 appName="Cloudflare WARP"
 debVer=$(dpkg --status tzdata|grep Provides|cut -f2 -d'-')
 debArch=$(uname -m)
