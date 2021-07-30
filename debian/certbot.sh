@@ -16,8 +16,6 @@ echo "Installing Certbot Snap..."
 snap install --classic certbot
 echo "Creating symlink..."
 ln -s /snap/bin/certbot /usr/bin/certbot
-echo "Enabling plugin support..."
-snap set certbot trust-plugin-with-root=ok
 echo "Choose your authenticator plugins. Select with the lower case letter in brackets."
 echo "e.g. type \"c\" for Cloudflare, \"cg\" for Cloudflare and Google, and nothing for nothing."
 echo ""
@@ -40,6 +38,8 @@ read -p "Select plugins: " uChoice
 echo ""
 testChoice () {
 	if [[ "$uChoice" == *"$1"* ]] ; then
+		echo "Enabling plugin support..."
+		snap set certbot trust-plugin-with-root=ok
 		echo "You selected \"$2\". Installing..."
 		snap install certbot-dns-$2
 	fi
