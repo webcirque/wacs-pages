@@ -10,7 +10,7 @@ echo "Preparing basic dependencies..."
 apt install -y curl tar
 getos=linux
 getarch=$debArch
-read -p "Version (e.g. 2.0.44): " getver
+read -p "Version (e.g. 2.0.45): " getver
 downloadPath=https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/$getver/dnscrypt-proxy-$getos\_$getarch-$getver.tar.gz
 mkdir /opt > /dev/null
 cd /opt
